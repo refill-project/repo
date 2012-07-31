@@ -8,4 +8,14 @@
         <error-code>404</error-code>
         <location>/error/404.jsp</location>
     </error-page>
+
+    <servlet>
+        <servlet-name>repositoryServlet</servlet-name>
+        <servlet-class>refill_project.RepositoryServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>repositoryServlet</servlet-name>
+        <url-pattern>/repository/*</url-pattern>
+    </servlet-mapping>
 </web-app>
