@@ -9,7 +9,7 @@ public class i18n {
         if(key.equals("name"))
             return "RefillBukkit";
         else if(key.equals("copyright"))
-            return String.format("Copyright &copy; %s RefillBukkit", new SimpleDateFormat("YYYY").format(new Date()));
+            return String.format("Copyright &copy; %s RefillBukkit", new SimpleDateFormat("y").format(new Date()));
         return key;
     }
 }

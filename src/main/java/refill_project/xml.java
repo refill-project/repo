@@ -30,7 +30,7 @@ public class xml {
                 s.append(String.format("%s\n", r.readLine()));
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource sour = new InputSource(new StringReader(s.toString().replaceAll("\\&(.+);", "").replaceAll("\\&", "")));
+            InputSource sour = new InputSource(new StringReader(s.toString().replaceAll("\\&(.+);", "").replaceAll("\\&", "").replace("<br>", "")));
             return db.parse(sour).getDocumentElement();
         }
         catch (Exception e)
