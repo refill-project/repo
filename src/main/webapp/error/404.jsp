@@ -1,1 +1,2 @@
-<%@ page import="refill_project.*" %><%@ include file="/template/header.jsp" %>404<%@ include file="/template/footer.jsp" %>
+<%@ page import="refill_project.*" %><%@ include file="/template/header.jsp" %><h1>Page Not Found</h1>
+The page your requested could not be found. If you believe this to be in error, please contact us at insert@email.here<%@ include file="/template/footer.jsp" %>
