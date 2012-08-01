@@ -1,4 +1,9 @@
-<%@ page import="refill_project.*" %>    <!-- Footer
+<%@ page import="refill_project.*" %>
+
+</header>
+
+	<div class="container">
+	<!-- Footer
       ================================================== -->
       <footer class="footer">
         <p class="pull-right"><a href="#">Back to top</a></p>
