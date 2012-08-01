@@ -35,7 +35,7 @@
        <a class="brand" href="/"><%= i18n.get("name") %></a>
        <div class="nav-collapse" id="main-menu">
 	   <ul class="nav" id="main-menu">
-      <li><a href="/download.jsp">Download Plugin</a></li>
+      <li><a href="/download/">Download Plugin</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#omdex">Plugin Index</a></li>
       <li><a href="#statistics">Statistics</a></li>
