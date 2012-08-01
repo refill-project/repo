@@ -33,7 +33,7 @@ public class RepositoryServlet extends GenericServlet {
 
     private String getFileDownloadPageURL(String project) throws IOException {
 
-        Element el = xml.parseXML(String.format("http://dev.bukkit.org/server-mods/"+project.replace("repository","")+"/files", project));
+        Element el = xml.parseXML(String.format("http://dev.bukkit.org/server-mods/%s/files", project));
         NodeList n = el.getElementsByTagName("td");
         boolean broken = false;
         for(int i = 0; i < n.getLength() && !broken; i++)
