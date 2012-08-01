@@ -34,10 +34,12 @@
        </a>
        <a class="brand" href="/"><%= i18n.get("name") %></a>
        <div class="nav-collapse" id="main-menu">
+	   <ul class="nav-collapse" id="main-menu">
       <li><a href="#typography">Download Plugin</a></li>
       <li><a href="#navbar">About</a></li>
       <li><a href="#buttons">Plugin Index</a></li>
       <li><a href="#forms">Statistics</a></li>
+	  </ul>
        </div>
      </div>
    </div>
