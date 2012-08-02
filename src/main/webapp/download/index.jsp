@@ -11,18 +11,10 @@
 <a href="#"><small>Other Versions...</small></a>
 </div>
 </div>
-<div class="span3">
+<div class="span4">
 <div class="well">
 <h2>Workbench <small>Not Available</small></h2>
 <p>Workbench is the working name of the official Minecraft API, currently in very early stages of development. Its goal is to provide a means of allowing anyone to pick up Minecraft and easily achieve any goal from modifying gameplay to creating utilities to overhauling the client's graphics.</p>
-<a class="btn btn-action btn-small btn-disabled" href="#">Download Version N/A</a>
-<a href="#"><small>Other Versions...</small></a>
-</div>
-</div>
-<div class="span4">
-<div class="well">
-<h2>Spout <small>Not Available</small></h2>
-<p>Spout, formerly BukkitContrib, is a framework to bridge the ever-widening chasm between single player mods, and multi-player Bukkit plugins. </p>
 <a class="btn btn-action btn-small btn-disabled" href="#">Download Version N/A</a>
 <a href="#"><small>Other Versions...</small></a>
 </div>
