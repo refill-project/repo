@@ -1,7 +1,7 @@
 <%@ page import="refill_project.*" %>
 <%@ include file="/template/header.jsp" %>
 <div class="row">
-    <div class="span5">
+    <div class="span6">
         <div class="well">
             <h1 class="page-title">Login</h1>
 <%
@@ -16,9 +16,9 @@
 <%  } %>
         </div>
     </div>
-    <div class="span5 pull-right">
+    <div class="span6">
         <div class="well">
-            <h1 class="page-title">Register</h1>
+            <h1 class="page-title pull-right">Register</h1>
             <p><small>Not available yet.. please try back soon!</small></p>
         </div>
     </div>
