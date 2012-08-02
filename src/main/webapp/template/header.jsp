@@ -40,6 +40,9 @@
       <li><a href="#omdex">Plugin Index</a></li>
       <li><a href="#statistics">Statistics</a></li>
 	  </ul>
+      <ul class="nav pull-right">
+        <li><a href="/auth/login.jsp">Login</a></li>
+      </ul>
        </div>
      </div>
    </div>
@@ -47,4 +50,3 @@
 
     <div class="container">
 <!-- ================================================== -->
-<header class="hero-unit" id="overview">

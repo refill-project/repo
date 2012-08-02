@@ -1,6 +1,6 @@
 <%@ page import="refill_project.*" %>
 
-</header>
+
 
 	<div class="container">
 	<!-- Footer
