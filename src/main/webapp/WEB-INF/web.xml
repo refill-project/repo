@@ -22,4 +22,14 @@
         <servlet-name>repositoryServlet</servlet-name>
         <url-pattern>/repository/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>pluginServlet</servlet-name>
+        <servlet-class>refill_project.PluginInfoServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>pluginServlet</servlet-name>
+        <url-pattern>/plugin/*</url-pattern>
+    </servlet-mapping>
 </web-app>
