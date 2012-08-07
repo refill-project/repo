@@ -25,7 +25,7 @@ public class PluginInfoServlet extends GenericServlet {
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         response.setStatus(200);
         request.getRequestDispatcher("/plugin.jsp").forward(request, response);
-        lo = request.getRequestURI()
+        lo = request.getRequestURI();
     }
     public String getString(){
         return this.lo;
