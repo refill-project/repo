@@ -16,18 +16,11 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 public class PluginInfoServlet extends GenericServlet {
-
-    private String lo;
-
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         response.setStatus(200);
         request.getRequestDispatcher("/plugin.jsp").forward(request, response);
-        lo = request.getRequestURI();
-    }
-    public String getString(){
-        return this.lo;
     }
 }
