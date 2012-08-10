@@ -83,7 +83,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <input type="hidden" name="recaptcha_response_field"
                             value="manual_challenge">
                     </noscript>
-                </form.
+                </form>
             </div>
         </div>
     </div>
