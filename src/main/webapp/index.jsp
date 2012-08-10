@@ -1,4 +1,4 @@
-<%@ page import="refill_project.*" %><%@ include file="/template/header.jsp" %>
+<%@ page import="com.crumbdev.*" %><%@ include file="/template/header.jsp" %>
 <header class="hero-unit" id="overview">
 <h1>Get Plugins for your Bukkit Server.</h1>
 <h2>No politics. No confusing web interfaces. No silly business.</h2>

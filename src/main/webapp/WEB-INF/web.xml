@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>repositoryServlet</servlet-name>
-        <servlet-class>refill_project.RepositoryServlet</servlet-class>
+        <servlet-class>com.crumbdev.RepositoryServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -25,7 +25,7 @@
     
     <servlet>
         <servlet-name>pluginServlet</servlet-name>
-        <servlet-class>refill_project.PluginInfoServlet</servlet-class>
+        <servlet-class>com.crumbdev.PluginInfoServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
