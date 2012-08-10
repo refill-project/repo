@@ -10,13 +10,6 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URL;
 
-/**
- * Created with IntelliJ IDEA.
- * User: 8381111
- * Date: 31/07/12
- * Time: 8:36 PM
- * To change this template use File | Settings | File Templates.
- */
 public class xml {
     public static Element parseXML(String url)
     {

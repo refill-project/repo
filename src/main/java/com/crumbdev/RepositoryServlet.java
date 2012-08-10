@@ -11,13 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: 8381111
- * Date: 31/07/12
- * Time: 8:15 PM
- * To change this template use File | Settings | File Templates.
- */
 public class RepositoryServlet extends GenericServlet {
     @Override
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
