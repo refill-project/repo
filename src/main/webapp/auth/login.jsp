@@ -30,9 +30,9 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             String line = rd.readLine();
             if(Boolean.valueOf(line))
             {
-                registermessage = "Captcha seems legit :D";
+                //Validate ALL THE THINGS (Captcha was successful)
             } else {
-                registermessage = "Captcha response was incorrect. Please try again " + rd.readLine();
+                registermessage = "Captcha response was incorrect. Please try again";
             }
         }
         catch (IOException e)
