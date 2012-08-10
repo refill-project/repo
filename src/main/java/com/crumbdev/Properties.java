@@ -12,7 +12,7 @@ public class Properties {
             if(map == null)
             {
                 map = new java.util.Properties();
-                File file = new File((System.getProperty("user.dir") != null ? System.getProperty("user.dir") : "/crumb")+ "/config.properties");
+                File file = new File((!System.getProperty("user.dir").equals("/var/cache/jetty/tmp") ? System.getProperty("user.dir") : "/crumb")+ "/config.properties");
                 if(!file.exists())
                 {
                     System.out.println(file.getAbsolutePath());
