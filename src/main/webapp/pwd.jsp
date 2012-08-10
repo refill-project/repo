@@ -1,1 +1,1 @@
-<%= com.crumbdev.Properties.getProperty("") %>
+<%= System.getProperty("user.dir") %>
