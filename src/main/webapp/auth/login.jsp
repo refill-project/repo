@@ -20,7 +20,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
         HttpPost req = new HttpPost("http://www.google.com/recaptcha/api/verify");
         try {
             List<NameValuePair> values = new ArrayList<NameValuePair>();
-            values.add(new BasicNameValuePair("privatekey", ""));
+            values.add(new BasicNameValuePair("privatekey", Properties.getProperty("captcha_private_key")));
             values.add(new BasicNameValuePair("remoteip", request.getHeader("X-Forwarded-For")));
             values.add(new BasicNameValuePair("challenge", request.getParameter("recaptcha_challenge_field")));
             values.add(new BasicNameValuePair("response", request.getParameter("recaptcha_response_field")));
@@ -32,7 +32,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             {
                 registermessage = "Captcha seems legit :D";
             } else {
-                registermessage = "Captcha response was incorrect. Please try again";
+                registermessage = "Captcha response was incorrect. Please try again " + rd.readLine();
             }
         }
         catch (IOException e)
@@ -74,9 +74,9 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                     Email Address: <input type="text" id="email" name="email"/></br>
                     Confirm Email: <input type="text" id="email2"/> <br/>
                     <input type="submit"/>
-                    <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LfJH9USAAAAACip4DSSdBrGeRKFaH-EpCbFU0uJ" />
+                    <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>
-                        <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfJH9USAAAAACip4DSSdBrGeRKFaH-EpCbFU0uJ"
+                        <iframe src="http://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>"
                             height="300" width="500" frameborder="0"></iframe><br>
                         <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                         </textarea>
