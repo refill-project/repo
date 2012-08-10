@@ -12,7 +12,7 @@ public class Properties {
             if(map == null)
             {
                 map = new java.util.Properties();
-                File file = new File(System.getProperty("user.dir") + "/config.properties");
+                File file = new File((System.getProperty("user.dir") != null ? System.getProperty("user.dir") : "/var/lib/jetty/")+ "/config.properties");
                 if(!file.exists())
                 {
                     file.createNewFile();
