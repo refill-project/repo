@@ -1,7 +1,7 @@
 <%@ page import="refill_project.*" %><%@ include file="/template/header.jsp" %>
 <div class="hero-unit">
 <h1>Download mod-get: <small>Current Build: NOT_RELEASED</small></h1>
-<h1><small><a href="www.mod-get.org">mod-get.org</a></small></h1>
+<h1><small><a href="http://www.mod-get.org">mod-get.org</a></small></h1>
 <h2>Select your version:</h2>
 <div class="row">
 <div class="span5">
