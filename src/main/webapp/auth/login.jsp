@@ -31,6 +31,7 @@
                 Confirm Password: <input type="password" id="pass2"/><br/>
                 Email Address: <input type="text" id="email" name="email"/></br>
                 Confirm Email: <input type="text" id="email2"/> <br/>
+                <input type="submit"/>
                 <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LfJH9USAAAAACip4DSSdBrGeRKFaH-EpCbFU0uJ" />
                 <noscript>
                     <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LfJH9USAAAAACip4DSSdBrGeRKFaH-EpCbFU0uJ"
@@ -40,8 +41,6 @@
                     <input type="hidden" name="recaptcha_response_field"
                         value="manual_challenge">
                 </noscript>
-                <br/>
-                <input type="submit"/>
             </form.
         </div>
     </div>
