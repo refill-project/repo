@@ -1,4 +1,5 @@
 <%@ page import="com.crumbdev.*" %>
+<%@ page import="com.crumbdev.auth.*" %>
 <%@ page import="org.apache.http.HttpResponse" %>
 <%@ page import="org.apache.http.NameValuePair" %>
 <%@ page import="org.apache.http.client.HttpClient" %>
@@ -30,7 +31,21 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             String line = rd.readLine();
             if(Boolean.valueOf(line))
             {
-                //Validate ALL THE THINGS (Captcha was successful)
+                if(!request.getParameter("password").equals(request.getParameter("password2")))
+                    registermessage = "Passwords did not match";
+                else if(!Regex.match("^[A-Za-z0-9_\\-]{3,}$", request.getParameter("username")))
+                    registermessage = "Username was invalid. Accepted characters are A-Z, a-z, 0-9, hyphen and underscore.";
+                else if(!Regex.match("^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", request.getParameter("email")))
+                    registermessage = "Email address was invalid. Please use a valid email address";
+                else if(User.userExists(request.getParameter("username")))
+                    registermessage = "A user by that name already exists. Please try another user name.";
+                else if(User.emailExists(request.getParameter("email")))
+                    registermessage = "A user already exists using that email address. Please select another email address.";
+                else
+                {
+                    User.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
+                    registermessage = "Please check your email inbox for a confirmation email (TODO)";
+                }
             } else {
                 registermessage = "Captcha response was incorrect. Please try again";
             }
@@ -68,11 +83,10 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <span style="color: #FF0000; font-weight: bold"><%= registermessage %></span><br/>
                     <% } %>
                     <input type="hidden" name="type" value="register"/>
-                    Username: <input type="text" name="username"/></br>
-                    Password: <input type="password" id="pass" name="password"/></br>
-                    Confirm Password: <input type="password" id="pass2"/><br/>
-                    Email Address: <input type="text" id="email" name="email"/></br>
-                    Confirm Email: <input type="text" id="email2"/> <br/>
+                    Username: <input type="text" name="username" value="<% if(request.getParameter("username") != null) out.print(request.getParameter("username"));%>"/></br>
+                    Password: <input type="password" name="password"/></br>
+                    Confirm Password: <input type="password" name="password2"/><br/>
+                    Email Address: <input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></br>
                     <input type="submit"/>
                     <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>

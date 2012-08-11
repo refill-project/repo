@@ -31,6 +31,21 @@ public class User {
         }
     }
 
+    public static boolean emailExists(String email)
+    {
+        try {
+            PreparedStatement s = MySQL.getConnection().prepareStatement("SELECT COUNT(username) as count FROM users WHERE email = ?");
+            s.setString(1, email);
+            ResultSet result = s.executeQuery();
+            result.next();
+            return result.getInt("count") == 1;
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static String crypt(String toCrypt)
     {
         try {
