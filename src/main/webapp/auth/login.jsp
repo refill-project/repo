@@ -62,17 +62,12 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
         <div class="span6">
             <div class="well">
                 <h1 class="page-title">Login</h1>
-    <%
-        if (request.getParameter("username") == null || request.getParameter("username").equals("") || request.getParameter("password") == null || request.getParameter("password").equals("")){%>
-            <form method="post">
-                <input type="hidden" name="type" value="login"/>
-                Username: <input type="text" name="username"/><br/>
-                Password: <input type="password" name="password"/><br/>
-                <input type="submit"/>
-            </form>
-    <%  } else {%>
-            Log in the user (<%= String.format("%s:%s", request.getParameter("username"), request.getParameter("password")) %>)
-    <%  } %>
+                <form method="post">
+                    <input type="hidden" name="type" value="login"/>
+                    Username: <input type="text" name="username"/><br/>
+                    Password: <input type="password" name="password"/><br/>
+                    <input type="submit"/>
+                </form>
             </div>
         </div>
         <div class="span6">
