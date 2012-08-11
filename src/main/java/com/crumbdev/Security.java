@@ -19,11 +19,9 @@ public class Security {
     public static String secureGenerate()
     {
         try {
-            if(secure == null)
-                secure = SecureRandom.getInstance("SHA1PRNG");
             if(insecure == null)
                 insecure = new Random();
-            if(insecure.nextInt(3) == 1)
+            if(insecure.nextInt(3) == 1 || secure == null)
             {
                 secure = SecureRandom.getInstance("SHA1PRNG");
                 secure.setSeed(secure.generateSeed(insecure.nextInt(1024)));
