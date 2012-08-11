@@ -80,21 +80,60 @@ public class User {
 
     public boolean passwordMatch(String password)
     {
-
+        try {
+            PreparedStatement s = MySQL.getConnection().prepareStatement("SELECT `password` FROM `users` WHERE `username`=?");
+            s.setString(1, username);
+            ResultSet result = s.executeQuery();
+            result.next();
+            return crypt(password) == result.getString("password");
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setPassword(String newPassword)
     {
-
+        try {
+            PreparedStatement s = MySQL.getConnection().prepareStatement("UPDATE `users` SET `password`=? WHERE `username`=?");
+            s.setString(1, crypt(newPassword));
+            s.setString(2, username);
+            s.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 
     public String getEmail()
     {
+        try {
+            PreparedStatement s = MySQL.getConnection().prepareStatement("SELECT `email` FROM `users` WHERE `username`=?");
+            s.setString(1, username);
+            ResultSet result = s.executeQuery();
+            result.next();
+            return result.getString("email");
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
 
     }
 
-    public void setEmail()
+    public void setEmail(String newEmail)
     {
-
+        try {
+            PreparedStatement s = MySQL.getConnection().prepareStatement("UPDATE `users` SET `email`=? WHERE `username`=?");
+            s.setString(1, newEmail);
+            s.setString(2, username);
+            s.executeUpdate();
+        }
+        catch (Exception e)
+        {
+            throw new RuntimeException(e);
+        }
     }
 }
