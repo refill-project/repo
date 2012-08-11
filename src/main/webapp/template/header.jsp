@@ -41,7 +41,9 @@
       <li><a href="#statistics">Statistics</a></li>
 	  </ul>
       <ul class="nav pull-right">
-        <li><a href="/auth/login.jsp">Login</a></li>
+        <li><% if(session.getAttribute("loggedInAs") == null) { %><a href="/auth/login.jsp">Login</a><% }
+         else { %><a><%= session.getAttribute("loggedInAs") %></a><% } %>
+        </li>
       </ul>
        </div>
      </div>

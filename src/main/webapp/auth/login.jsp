@@ -61,6 +61,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
         if(User.userExists(request.getParameter("username")) && (new User(request.getParameter("username"))).passwordMatch(request.getParameter("password")))
         {
             loginmessage = "Successfully logged in";
+            session.setAttribute("loggedInAs", request.getParameter("username"));
         }
         else
         {
