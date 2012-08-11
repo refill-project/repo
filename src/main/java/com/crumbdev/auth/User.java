@@ -1,6 +1,7 @@
 package com.crumbdev.auth;
 
 import com.crumbdev.MySQL;
+import com.crumbdev.Security;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -47,22 +48,7 @@ public class User {
         }
     }
 
-    public static String crypt(String toCrypt)
-    {
-        return crypt("SHA-512", toCrypt);
-    }
 
-    public static String crypt(String cypher, String toCrypt)
-    {
-        try {
-            Formatter f = new Formatter();
-            return new BigInteger(1, MessageDigest.getInstance(cypher).digest(toCrypt.getBytes("UTF-8"))).toString(16);
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException(e);
-        }
-    }
 
     public static User createUser(String username, String password, String email)
     {
@@ -71,7 +57,7 @@ public class User {
                 return new User(username);
             PreparedStatement s = MySQL.getConnection().prepareStatement("INSERT INTO `users` (`username`, `password`, `email`) VALUES (?, ?, ?)");
             s.setString(1, username);
-            s.setString(2, crypt(password));
+            s.setString(2, Security.crypt(password));
             s.setString(3, email);
             s.executeUpdate();
             return new User(username);
@@ -104,7 +90,7 @@ public class User {
             s.setString(1, username);
             ResultSet result = s.executeQuery();
             result.next();
-            return crypt(password).equalsIgnoreCase(result.getString("password"));
+            return Security.crypt(password).equalsIgnoreCase(result.getString("password"));
         }
         catch (Exception e)
         {
@@ -116,7 +102,7 @@ public class User {
     {
         try {
             PreparedStatement s = MySQL.getConnection().prepareStatement("UPDATE `users` SET `password`=? WHERE `username`=?");
-            s.setString(1, crypt(newPassword));
+            s.setString(1, Security.crypt(newPassword));
             s.setString(2, username);
             s.executeUpdate();
         }
@@ -163,6 +149,6 @@ public class User {
 
     public String getGravatarURL(int size)
     {
-        return String.format("http://www.gravatar.com/avatar/%s.png?s=%s", crypt("MD5", getEmail()), size);
+        return String.format("http://www.gravatar.com/avatar/%s.png?s=%s", Security.crypt("MD5", getEmail()), size);
     }
 }
