@@ -1,4 +1,5 @@
 <%@ page import="com.crumbdev.*" %>
+<%@ page import="com.crumbdev.auth.*" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,7 +43,7 @@
 	  </ul>
       <ul class="nav pull-right">
         <li><% if(session.getAttribute("loggedInAs") == null) { %><a href="/auth/login.jsp">Login</a><% }
-         else { %><a><%= session.getAttribute("loggedInAs") %></a><% } %>
+         else { %><a><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px"/><%= session.getAttribute("loggedInAs") %></a><% } %>
         </li>
       </ul>
        </div>

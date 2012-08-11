@@ -2,6 +2,7 @@ package com.crumbdev.auth;
 
 import com.crumbdev.MySQL;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,11 +49,14 @@ public class User {
 
     public static String crypt(String toCrypt)
     {
+        return crypt("SHA-1", toCrypt);
+    }
+
+    public static String crypt(String cypher, String toCrypt)
+    {
         try {
             Formatter f = new Formatter();
-            for(byte by : MessageDigest.getInstance("SHA-1").digest(toCrypt.getBytes()))
-                f.format("%02x", by);
-            return f.toString();
+            return new BigInteger(1, MessageDigest.getInstance(cypher).digest(toCrypt.getBytes("UTF-8"))).toString(16);
         }
         catch (Exception e)
         {
@@ -150,5 +154,15 @@ public class User {
         {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getGravatarURL()
+    {
+        return getGravatarURL(80);
+    }
+
+    public String getGravatarURL(int size)
+    {
+        return String.format("http://www.gravatar.com/avatar/%s.png?s=%s", crypt("MD5", getEmail()), size);
     }
 }
