@@ -49,7 +49,7 @@ public class User {
 
     public static String crypt(String toCrypt)
     {
-        return crypt("SHA-1", toCrypt);
+        return crypt("SHA-512", toCrypt);
     }
 
     public static String crypt(String cypher, String toCrypt)
