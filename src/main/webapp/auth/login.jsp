@@ -14,6 +14,7 @@
 <%@ page import="java.util.List" %>
 <%
 String registermessage = "";
+String loginmessage = "";
 if ( request.getParameter("type") != null && (request.getParameter("type").equals("login") || request.getParameter("type").equals("register")))
 {
     if(request.getParameter("type").equals("register")) {
@@ -55,6 +56,17 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             throw new RuntimeException(e);
         }
     }
+    else if(request.getParameter("type").equals("login"))
+    {
+        if(User.userExists(request.getParameter("username")) && (new User(request.getParameter("username"))).passwordMatch(request.getParameter("password")))
+        {
+            loginmessage = "Successfully logged in";
+        }
+        else
+        {
+            loginmessage = "Username/password not recognized, please try again";
+        }
+    }
 }
 %>
 <%@ include file="/template/header.jsp" %>
@@ -63,6 +75,9 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             <div class="well">
                 <h1 class="page-title">Login</h1>
                 <form method="post">
+                    <% if ( !loginmessage.equals(""))  { %>
+                        <span style="color: #FF0000; font-weight: bold"><%= loginmessage %></span><br/>
+                    <% } %>
                     <input type="hidden" name="type" value="login"/>
                     Username: <input type="text" name="username"/><br/>
                     Password: <input type="password" name="password"/><br/>

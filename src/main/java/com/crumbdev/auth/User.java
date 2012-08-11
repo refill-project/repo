@@ -100,7 +100,7 @@ public class User {
             s.setString(1, username);
             ResultSet result = s.executeQuery();
             result.next();
-            return crypt(password) == result.getString("password");
+            return crypt(password).equalsIgnoreCase(result.getString("password"));
         }
         catch (Exception e)
         {
