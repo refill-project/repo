@@ -26,7 +26,7 @@ public class Security {
             if(insecure.nextInt(3) == 1)
             {
                 secure = SecureRandom.getInstance("SHA1PRNG");
-                secure.setSeed(secure.generateSeed(1024));
+                secure.setSeed(secure.generateSeed(insecure.nextInt(1024)));
             }
             byte[] bytes = new byte[20];
             secure.nextBytes(bytes);
