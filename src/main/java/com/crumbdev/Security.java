@@ -43,7 +43,6 @@ public class Security {
     public static String crypt(String cypher, String toCrypt)
     {
         try {
-            Formatter f = new Formatter();
             return new BigInteger(1, MessageDigest.getInstance(cypher).digest(toCrypt.getBytes("UTF-8"))).toString(16);
         }
         catch (Exception e)
