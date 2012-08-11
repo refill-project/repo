@@ -42,8 +42,11 @@
       <li><a href="#statistics">Statistics</a></li>
 	  </ul>
       <ul class="nav pull-right">
-        <li><% if(session.getAttribute("loggedInAs") == null) { %><a href="/auth/login.jsp">Login</a><% }
-         else { %><a><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px"/><%= session.getAttribute("loggedInAs") %></a><% } %>
+        <% if(session.getAttribute("loggedInAs") == null) { %><li><a href="/auth/login.jsp">Login</a></li><% }
+         else { %>
+            <li><a><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px"/><%= session.getAttribute("loggedInAs") %></a></li>
+            <li><a href="/auth/logout.jsp">Log out</a></li>
+         <% } %>
         </li>
       </ul>
        </div>
