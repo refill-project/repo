@@ -99,9 +99,9 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                     Confirm Password: <input type="password" name="password2"/><br/>
                     Email Address: <input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></br>
                     <input type="submit"/>
-                    <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
+                    <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>
-                        <iframe src="http://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>"
+                        <iframe src="https://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>"
                             height="300" width="500" frameborder="0"></iframe><br>
                         <textarea name="recaptcha_challenge_field" rows="3" cols="40">
                         </textarea>
