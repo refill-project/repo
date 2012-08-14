@@ -10,13 +10,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Formatter;
 
-/**
- * Created with IntelliJ IDEA.
- * User: 8381111
- * Date: 10/08/12
- * Time: 11:57 PM
- * To change this template use File | Settings | File Templates.
- */
 public class User {
     public static boolean userExists(String username)
     {

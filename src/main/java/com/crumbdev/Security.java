@@ -6,13 +6,7 @@ import java.security.SecureRandom;
 import java.util.Formatter;
 import java.util.Random;
 
-/**
- * Created with IntelliJ IDEA.
- * User: 8381111
- * Date: 12/08/12
- * Time: 12:57 AM
- * To change this template use File | Settings | File Templates.
- */
+
 public class Security {
     private static SecureRandom secure = null;
     private static Random insecure = null;
