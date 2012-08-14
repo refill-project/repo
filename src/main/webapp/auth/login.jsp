@@ -48,12 +48,10 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                 else if(User.emailExists(request.getParameter("email")))
                     loggedinFlash.setFlashed(false);
                     registermessage = "A user already exists using that email address. Please select another email address.";
-                else
-                {   
+                else   
                     loggedinFlash.setFlashed(false);
                     User.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
                     registermessage = "Please check your email inbox for a confirmation email (TODO)";
-                }
             } else {
                 loggedinFlash.setFlashed(false);
                 registermessage = "Captcha response was incorrect. Please try again";
