@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class i18n {
+    
     public static String get(String key)
     {
         if(key.equals("name"))

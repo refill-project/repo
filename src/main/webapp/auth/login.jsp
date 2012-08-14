@@ -15,6 +15,7 @@
 <%
 String registermessage = "";
 String loginmessage = "";
+Flash loggedinFlash = new Flash("Logged in Successfully!","success");
 if ( request.getParameter("type") != null && (request.getParameter("type").equals("login") || request.getParameter("type").equals("register")))
 {
     if(request.getParameter("type").equals("register")) {
@@ -33,26 +34,34 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             if(Boolean.valueOf(line))
             {
                 if(!request.getParameter("password").equals(request.getParameter("password2")))
+                    loggedinFlash.setFlashed(false);
                     registermessage = "Passwords did not match";
                 else if(!Regex.match("^[A-Za-z0-9_\\-]{3,}$", request.getParameter("username")))
+                    loggedinFlash.setFlashed(false);
                     registermessage = "Username was invalid. Accepted characters are A-Z, a-z, 0-9, hyphen and underscore.";
                 else if(!Regex.match("^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", request.getParameter("email")))
+                    loggedinFlash.setFlashed(false);
                     registermessage = "Email address was invalid. Please use a valid email address";
                 else if(User.userExists(request.getParameter("username")))
+                    loggedinFlash.setFlashed(false);
                     registermessage = "A user by that name already exists. Please try another user name.";
                 else if(User.emailExists(request.getParameter("email")))
+                    loggedinFlash.setFlashed(false);
                     registermessage = "A user already exists using that email address. Please select another email address.";
                 else
-                {
+                {   
+                    loggedinFlash.setFlashed(false);
                     User.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
                     registermessage = "Please check your email inbox for a confirmation email (TODO)";
                 }
             } else {
+                loggedinFlash.setFlashed(false);
                 registermessage = "Captcha response was incorrect. Please try again";
             }
         }
         catch (IOException e)
         {
+            loggedinFlash.setFlashed(false);
             throw new RuntimeException(e);
         }
     }
@@ -64,13 +73,23 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             session.setAttribute("loggedInAs", request.getParameter("username"));
         }
         else
-        {
+        {   
+            loggedinFlash.setFlashed(false);
             loginmessage = "Username/password not recognized, please try again";
         }
     }
 }
 %>
 <%@ include file="/template/header.jsp" %>
+    <% if ( loggedinFlash.isFlashed() ) { %>
+    <div class="row">
+        <div class="span12">
+            <div class="alert alert-<%= loggedinFlash.getType() %>">
+                <%= loggedinFlash.getNotice() %>
+            </div>
+        </div>
+    </div>
+    <% } %>
     <div class="row">
         <div class="span6">
             <div class="well">
@@ -98,7 +117,6 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                     Password: <input type="password" name="password"/></br>
                     Confirm Password: <input type="password" name="password2"/><br/>
                     Email Address: <input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></br>
-                    <input type="submit"/>
                     <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>
                         <iframe src="https://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>"
@@ -108,6 +126,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <input type="hidden" name="recaptcha_response_field"
                             value="manual_challenge">
                     </noscript>
+                    <input type="submit"/>
                 </form>
             </div>
         </div>

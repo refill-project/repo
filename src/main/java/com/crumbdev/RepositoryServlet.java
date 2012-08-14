@@ -16,8 +16,12 @@ public class RepositoryServlet extends GenericServlet {
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
+        try{
         response.setStatus(302);
         response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(((HttpServletRequest) servletRequest).getRequestURI().split("/")[2])));
+        }catch(Exception e){
+        response.setStatus(404);
+        }
     }
 
     private String getFileDownloadPageURL(String project) throws IOException {
