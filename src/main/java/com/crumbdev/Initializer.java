@@ -14,7 +14,9 @@ public class Initializer extends HttpServlet {
     {
         Logger.getLogger(getClass().getName()).info("Starting initialization");
         Security.secureGenerate();
+        Logger.getLogger(getClass().getName()).info("MySQL Init");
         User.userExists("lol");
+        Logger.getLogger(getClass().getName()).info("Properties Init");
         Properties.getProperty("herp");
         Logger.getLogger(getClass().getName()).info("Initialization Complete");
     }
