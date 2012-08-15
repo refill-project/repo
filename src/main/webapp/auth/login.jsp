@@ -109,8 +109,16 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <span style="color: #FF0000; font-weight: bold"><%= loginmessage %></span><br/>
                     <% } %>
                     <input type="hidden" name="type" value="login"/>
-                    Username: <input type="text" name="username"/><br/>
-                    Password: <input type="password" name="password"/><br/>
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input type="text" name="username"/></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="password" name="password"/></td>
+                        </tr>
+                    </table>
                     <input type="submit"/>
                 </form>
             </div>
@@ -123,19 +131,31 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <span style="color: #FF0000; font-weight: bold"><%= registermessage %></span><br/>
                     <% } %>
                     <input type="hidden" name="type" value="register"/>
-                    Username: <input type="text" name="username" value="<% if(request.getParameter("username") != null) out.print(request.getParameter("username"));%>"/></br>
-                    Password: <input type="password" name="password"/></br>
-                    Confirm Password: <input type="password" name="password2"/><br/>
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input type="text" name="username" value="<% if(request.getParameter("username") != null) out.print(request.getParameter("username"));%>"/></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="password" name="password"/></td>
+                        </tr>
+                        <tr>
+                            <td>Confirm Password:</td>
+                            <td><input type="password" name="password2"/></td>
+                        </tr>
+                        <tr>
+                            <td>Email Address:</td>
+                            <td><input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></td>
+                        </tr>
+
+                    </table>
                     <input type="submit"/>
-                    Email Address: <input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></br>
                     <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>
-                        <iframe src="https://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>"
-                            height="300" width="500" frameborder="0"></iframe><br>
-                        <textarea name="recaptcha_challenge_field" rows="3" cols="40">
-                        </textarea>
-                        <input type="hidden" name="recaptcha_response_field"
-                            value="manual_challenge">
+                        <iframe src="https://www.google.com/recaptcha/api/noscript?k=<%= Properties.getProperty("captcha_public_key")%>" height="300" width="500" frameborder="0"></iframe><br/>
+                        <textarea name="recaptcha_challenge_field" rows="3" cols="40"></textarea>
+                        <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
                     </noscript>
                 </form>
             </div>
