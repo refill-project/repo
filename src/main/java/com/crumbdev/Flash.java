@@ -16,7 +16,7 @@ public class Flash {
     public Flash(String notice, String type){
         this.notice = notice;
         this.type = type;
-        this.isFlash = true;
+        this.isFlash = false;
     }
     
     public String getNotice(){

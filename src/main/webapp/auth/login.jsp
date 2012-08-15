@@ -13,9 +13,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%
-String registermessage = "";
-String loginmessage = "";
-Flash loggedinFlash = new Flash("Logged in Successfully!","success");
+Flash flash = new Flash("Logged in Successfully!","success");
 if ( request.getParameter("type") != null && (request.getParameter("type").equals("login") || request.getParameter("type").equals("register")))
 {
     if(request.getParameter("type").equals("register")) {
@@ -35,43 +33,48 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             {
                 if(!request.getParameter("password").equals(request.getParameter("password2")))
                 {
-                    loggedinFlash.setFlashed(false);
-                    registermessage = "Passwords did not match";
+                    flash.setNotice("Passwords did not match");
+                    flash.setType("danger");
+                    flash.setFlashed(true);
                 }
                 else if(!Regex.match("^[A-Za-z0-9_\\-]{3,}$", request.getParameter("username")))
                 {
-                    loggedinFlash.setFlashed(false);
-                    registermessage = "Username was invalid. Accepted characters are A-Z, a-z, 0-9, hyphen and underscore.";
+                    flash.setNotice("Username was invalid. Accepted characters are A-Z, a-z, 0-9, hyphen and underscore.");
+                    flash.setType("danger");
+                    flash.setFlashed(true);
                 }
                 else if(!Regex.match("^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", request.getParameter("email")))
                 {
-                    loggedinFlash.setFlashed(false);
-                    registermessage = "Email address was invalid. Please use a valid email address";
+                    flash.setNotice("Email address was invalid. Please use a valid email address");
+                    flash.setType("danger");
+                    flash.setFlashed(true);
                 }
                 else if(User.userExists(request.getParameter("username")))
                 {
-                    loggedinFlash.setFlashed(false);
-                    registermessage = "A user by that name already exists. Please try another user name.";
+                    flash.setNotice("A user by that name already exists. Please try another user name.");
+                    flash.setType("danger");
+                    flash.setFlashed(true);
                 }
                 else if(User.emailExists(request.getParameter("email")))
                 {
-                    loggedinFlash.setFlashed(false);
-                    registermessage = "A user already exists using that email address. Please select another email address.";
+                    flash.setNotice("A user already exists using that email address. Please select another email address.");
+                    flash.setType("danger");
+                    flash.setFlashed(true);
                 }
                 else
                 {
-                    loggedinFlash.setFlashed(false);
                     User.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
-                    registermessage = "Please check your email inbox for a confirmation email (TODO)";
+                    flash.setNotice("Please check your email inbox for a confirmation email (TODO)");
+                    flash.setFlashed(true);
                 }
             } else {
-                loggedinFlash.setFlashed(false);
-                registermessage = "Captcha response was incorrect. Please try again";
+                flash.setNotice("Captcha response was incorrect. Please try again");
+                flash.setType("danger");
+                flash.setFlashed(true);
             }
         }
         catch (IOException e)
         {
-            loggedinFlash.setFlashed(false);
             throw new RuntimeException(e);
         }
     }
@@ -79,23 +82,25 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
     {
         if(User.userExists(request.getParameter("username")) && (new User(request.getParameter("username"))).passwordMatch(request.getParameter("password")))
         {
-            loginmessage = "Successfully logged in";
+            flash.setNotice("Successfully logged in");
+            flash.setFlashed(true);
             session.setAttribute("loggedInAs", request.getParameter("username"));
         }
         else
         {   
-            loggedinFlash.setFlashed(false);
-            loginmessage = "Username/password not recognized, please try again";
+            flash.setFlashed(true);
+            flash.setType("danger");
+            flash.setNotice("Username/password not recognized, please try again");
         }
     }
 }
 %>
 <%@ include file="/template/header.jsp" %>
-    <% if ( loggedinFlash.isFlashed() ) { %>
+    <% if ( flash.isFlashed() ) { %>
     <div class="row">
         <div class="span12">
-            <div class="alert alert-<%= loggedinFlash.getType() %>">
-                <%= loggedinFlash.getNotice() %>
+            <div class="alert alert-<%= flash.getType() %>">
+                <%= flash.getNotice() %>
             </div>
         </div>
     </div>
@@ -105,9 +110,6 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             <div class="well">
                 <h1 class="page-title">Login</h1>
                 <form method="post">
-                    <% if ( !loginmessage.equals(""))  { %>
-                        <span style="color: #FF0000; font-weight: bold"><%= loginmessage %></span><br/>
-                    <% } %>
                     <input type="hidden" name="type" value="login"/>
                     <table>
                         <tr>
@@ -127,9 +129,6 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             <div class="well">
                 <h1 class="page-title">Register</h1>
                 <form method="post">
-                    <% if ( !registermessage.equals(""))  { %>
-                        <span style="color: #FF0000; font-weight: bold"><%= registermessage %></span><br/>
-                    <% } %>
                     <input type="hidden" name="type" value="register"/>
                     <table>
                         <tr>
