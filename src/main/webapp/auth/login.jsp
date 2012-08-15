@@ -34,24 +34,36 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
             if(Boolean.valueOf(line))
             {
                 if(!request.getParameter("password").equals(request.getParameter("password2")))
+                {
                     loggedinFlash.setFlashed(false);
                     registermessage = "Passwords did not match";
+                }
                 else if(!Regex.match("^[A-Za-z0-9_\\-]{3,}$", request.getParameter("username")))
+                {
                     loggedinFlash.setFlashed(false);
                     registermessage = "Username was invalid. Accepted characters are A-Z, a-z, 0-9, hyphen and underscore.";
+                }
                 else if(!Regex.match("^[A-Za-z0-9\\._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$", request.getParameter("email")))
+                {
                     loggedinFlash.setFlashed(false);
                     registermessage = "Email address was invalid. Please use a valid email address";
+                }
                 else if(User.userExists(request.getParameter("username")))
+                {
                     loggedinFlash.setFlashed(false);
                     registermessage = "A user by that name already exists. Please try another user name.";
+                }
                 else if(User.emailExists(request.getParameter("email")))
+                {
                     loggedinFlash.setFlashed(false);
                     registermessage = "A user already exists using that email address. Please select another email address.";
-                else   
+                }
+                else
+                {
                     loggedinFlash.setFlashed(false);
                     User.createUser(request.getParameter("username"), request.getParameter("password"), request.getParameter("email"));
                     registermessage = "Please check your email inbox for a confirmation email (TODO)";
+                }
             } else {
                 loggedinFlash.setFlashed(false);
                 registermessage = "Captcha response was incorrect. Please try again";
