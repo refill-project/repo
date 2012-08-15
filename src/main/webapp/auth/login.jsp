@@ -126,6 +126,7 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                     Username: <input type="text" name="username" value="<% if(request.getParameter("username") != null) out.print(request.getParameter("username"));%>"/></br>
                     Password: <input type="password" name="password"/></br>
                     Confirm Password: <input type="password" name="password2"/><br/>
+                    <input type="submit"/>
                     Email Address: <input type="text" name="email" value="<% if(request.getParameter("email") != null) out.print(request.getParameter("email"));%>"/></br>
                     <script type="text/javascript" src="https://www.google.com/recaptcha/api/challenge?k=<%= Properties.getProperty("captcha_public_key")%>" />
                     <noscript>
@@ -136,7 +137,6 @@ if ( request.getParameter("type") != null && (request.getParameter("type").equal
                         <input type="hidden" name="recaptcha_response_field"
                             value="manual_challenge">
                     </noscript>
-                    <input type="submit"/>
                 </form>
             </div>
         </div>
