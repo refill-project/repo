@@ -39,9 +39,9 @@
        <div class="nav-collapse" id="main-menu">
 	   <ul class="nav" id="main-menu">
       <li><a href="/download/">Download Plugin</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#omdex">Plugin Index</a></li>
-      <li><a href="#statistics">Statistics</a></li>
+      <li><a href="/about/">About</a></li>
+      <!-- <li><a href="#omdex">Plugin Index</a></li>
+      <li><a href="#statistics">Statistics</a></li> -->
 	  </ul>
       <ul class="nav pull-right">
         <% if(session.getAttribute("loggedInAs") == null) { %><li><a data-toggle="modal" href="#login">Login</a></li><% }
@@ -56,13 +56,13 @@
    </div>
  </div>
  <div class="modal hide" id="login">
+     <form method="post" action="/auth/login.jsp">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">x</button>
     <h3>Login</h3>
   </div>
   <div class="modal-body">
   <div class="well">
-    <form method="post" action="/auth/login.jsp">
                     <input type="hidden" name="type" value="login"/>
                     <table>
                         <tr>
@@ -74,14 +74,13 @@
                             <td><input type="password" name="password"/></td>
                         </tr>
                     </table>
-                    <input type="submit"/>
-                </form>
     </div>
     </div>
   <div class="modal-footer">
 	<a class="btn btn-success" href="/auth/login.jsp">Register</a>
     <input class="btn btn-primary" type="submit" value="Login" />
   </div>
+</form>
 </div>
 <br><br>
     <div class="container">
