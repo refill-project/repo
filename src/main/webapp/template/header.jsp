@@ -46,7 +46,7 @@
       <ul class="nav pull-right">
         <% if(session.getAttribute("loggedInAs") == null) { %><li><a data-toggle="modal" href="#login">Login</a></li><% }
          else { %>
-            <li><a><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px"/><%= session.getAttribute("loggedInAs") %></a></li>
+            <li><a data-toggle="modal" href="#user-info"><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px; "/><%= session.getAttribute("loggedInAs") %></a></li>
             <li><a href="/auth/logout.jsp">Log out</a></li>
          <% } %>
         </li>
@@ -82,6 +82,29 @@
   </div>
 </form>
 </div>
+<% if(session.getAttribute("loggedInAs") != null) { %>
+ <div class="modal hide" id="user-info">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Logged in as: <%= session.getAttribute("loggedInAs") %></h3>
+  </div>
+  <div class="modal-body">
+  <div class="row">
+  <div class="span2">
+            <img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(150)%>" style="margin-right: 4px;" />
+	</div>
+	<div class="span4 well well-small">
+		<h3>User Actions</h3>
+	</div>
+	</div>
+    </div>
+  <div class="modal-footer">
+	<a class="btn btn-danger" href="/auth/logout.jsp">Logout</a>
+	<a href="#" class="btn" data-dismiss="modal">Close</a>
+  </div>
+</form>
+</div>
+<% } %>
 <br><br>
     <div class="container">
 <!-- ================================================== -->

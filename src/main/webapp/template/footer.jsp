@@ -41,6 +41,11 @@
         show: false,
         backdrop: true
      })
+     $('#user-footer').modal({
+        keyboard: true,
+        show: false,
+        backdrop: true
+     })
      </script>
   </body>
 </html>
