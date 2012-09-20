@@ -44,7 +44,7 @@
       <li><a href="#statistics">Statistics</a></li>
 	  </ul>
       <ul class="nav pull-right">
-        <% if(session.getAttribute("loggedInAs") == null) { %><li><a href="/auth/login.jsp">Login</a></li><% }
+        <% if(session.getAttribute("loggedInAs") == null) { %><li><a data-toggle="modal" href="#login">Login</a></li><% }
          else { %>
             <li><a><img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(25)%>" style="margin-right: 4px"/><%= session.getAttribute("loggedInAs") %></a></li>
             <li><a href="/auth/logout.jsp">Log out</a></li>
@@ -55,6 +55,34 @@
      </div>
    </div>
  </div>
+ <div class="modal hide" id="login">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">x</button>
+    <h3>Login</h3>
+  </div>
+  <div class="modal-body">
+  <div class="well">
+    <form method="post" action="/auth/login.jsp">
+                    <input type="hidden" name="type" value="login"/>
+                    <table>
+                        <tr>
+                            <td>Username:</td>
+                            <td><input type="text" name="username"/></td>
+                        </tr>
+                        <tr>
+                            <td>Password:</td>
+                            <td><input type="password" name="password"/></td>
+                        </tr>
+                    </table>
+                    <input type="submit"/>
+                </form>
+    </div>
+    </div>
+  <div class="modal-footer">
+	<a class="btn btn-success" href="/auth/login.jsp">Register</a>
+    <input class="btn btn-primary" type="submit" value="Login" />
+  </div>
+</div>
 <br><br>
     <div class="container">
 <!-- ================================================== -->
