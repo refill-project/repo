@@ -93,7 +93,7 @@
   <div class="span2">
             <img src="<%= (new User(session.getAttribute("loggedInAs").toString())).getGravatarURL(150)%>" style="margin-right: 4px;" />
 	</div>
-	<div class="span4 well well-small">
+	<div class="span3">
 		<h3>User Actions</h3>
 	</div>
 	</div>
