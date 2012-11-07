@@ -25,8 +25,7 @@ public class RepositoryServlet extends GenericServlet {
             response.setStatus(302);
             response.sendRedirect(getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
-            response.setStatus(404);
-            response.getOutputStream().print(slug);
+            response.sendError(404);
         }
     }
 
