@@ -25,7 +25,7 @@ public class RepositoryServlet extends GenericServlet {
             }
             response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
-            response.setStatus(404);
+            throw new RuntimeException(e);
         }
     }
 
