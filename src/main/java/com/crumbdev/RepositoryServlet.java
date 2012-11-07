@@ -16,16 +16,16 @@ public class RepositoryServlet extends GenericServlet {
     public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
+        String[] requesturl = ((HttpServletRequest) servletRequest).getRequestURI().split("/");
         try{
             response.setStatus(302);
-            String[] requesturl = ((HttpServletRequest) servletRequest).getRequestURI().split("/");
             String slug = requesturl[2];
             if(slug.equalsIgnoreCase("crumb")) {
                 slug = requesturl[3];
             }
             response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
-            throw new RuntimeException(e);
+            response.getOutputStream().print(requesturl.toString());
         }
     }
 
