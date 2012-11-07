@@ -23,7 +23,7 @@ public class RepositoryServlet extends GenericServlet {
             if(slug.equalsIgnoreCase("repository")) {
                 slug = requesturl[3];
             }
-            response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(slug)));
+            response.sendRedirect(getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
             response.setStatus(404);
         }
