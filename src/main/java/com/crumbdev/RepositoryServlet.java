@@ -20,12 +20,12 @@ public class RepositoryServlet extends GenericServlet {
         try{
             response.setStatus(302);
             String slug = requesturl[2];
-            if(slug.equalsIgnoreCase("crumb")) {
+            if(slug.equalsIgnoreCase("repository")) {
                 slug = requesturl[3];
             }
             response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
-            response.getOutputStream().print(requesturl.toString());
+            response.setStatus(404);
         }
     }
 
