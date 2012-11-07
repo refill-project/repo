@@ -17,10 +17,15 @@ public class RepositoryServlet extends GenericServlet {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         try{
-        response.setStatus(302);
-        response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(((HttpServletRequest) servletRequest).getRequestURI().split("/")[2])));
+            response.setStatus(302);
+            String[] requesturl = ((HttpServletRequest) servletRequest).getRequestURI().split("/");
+            String slug = requesturl[2];
+            if(slug.equalsIgnoreCase("crumb")) {
+                slug = requesturl[3];
+            }
+            response.setHeader("Location", getFileDownloadURL(getFileDownloadPageURL(slug)));
         }catch(Exception e){
-        response.setStatus(404);
+            response.setStatus(404);
         }
     }
 
